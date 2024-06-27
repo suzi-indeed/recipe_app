@@ -14,6 +14,11 @@ function RecipeCreate({ recipes, setRecipes }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (name === "" || cuisine === "" || photo === "" || ingredients === "" || preparation === "") {
+      alert("Please fill in all fields");
+      return;
+    }
+    else{
     let newRecipe = {
       name: name,
       cuisine: cuisine,
@@ -21,7 +26,6 @@ function RecipeCreate({ recipes, setRecipes }) {
       ingredients: ingredients,
       preparation: preparation
     };
-    //console.log(recipes);
     setRecipes([
       ...recipes,
       newRecipe
@@ -31,27 +35,27 @@ function RecipeCreate({ recipes, setRecipes }) {
     setPhoto("");
     setIngredients("");
     setPreparation("");
-  };
+  }};
 
   return (
-    <form name="create">
+    <form name="create" key={recipes.length}>
       <table>
         <tbody>
           <tr>
             <td>
-              <input type="text" id="name" name="name" placeholder="Name" onChange={(event) => setName(event.target.value)}></input>
+              <input type="text" id="name" name="name" autocomplete="off" placeholder="Name" onChange={(event) => setName(event.target.value)}></input>
             </td>
             <td>
-              <input type="text" id="cuisine" name="cuisine" placeholder="Cuisine" value={cuisine} onChange={(event) => setCuisine(event.target.value)}></input>
+              <input type="text" id="cuisine" name="cuisine" autocomplete="off" placeholder="Cuisine" value={cuisine} onChange={(event) => setCuisine(event.target.value)}></input>
             </td>
             <td>
-              <input type="url" id="url" name="photo" placeholder="URL" onChange={(event) => setPhoto(event.target.value)}></input>
+              <input type="url" id="url" name="photo" autocomplete="off" placeholder="URL" onChange={(event) => setPhoto(event.target.value)}></input>
             </td>
             <td>
-              <textarea type="text" id="ingredients" name="ingredients" placeholder="Ingredients" onChange={(event) => setIngredients(event.target.value)}></textarea>
+              <textarea type="text" id="ingredients" name="ingredients" autocomplete="off" placeholder="Ingredients" onChange={(event) => setIngredients(event.target.value)}></textarea>
             </td>
             <td>
-              <textarea type="text" id="preparation" name="preparation" placeholder="Preparation" onChange={(event) => setPreparation(event.target.value)}></textarea>
+              <textarea type="text" id="preparation" name="preparation" autocomplete="off" placeholder="Preparation" onChange={(event) => setPreparation(event.target.value)}></textarea>
             </td>
             <td>
               <button type="submit" onClick={handleSubmit}>Create</button>
